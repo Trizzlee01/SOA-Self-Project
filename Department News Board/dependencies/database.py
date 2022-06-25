@@ -68,7 +68,7 @@ class DatabaseWrapper:
         cursor = self.connection.cursor(dictionary=True)
         cursor2 = self.connection.cursor(dictionary=True)
 
-        sql = "SELECT * FROM news WHERE archives = %s AND deleted = %s"
+        sql = "SELECT * FROM news WHERE archived = %s AND deleted = %s"
         cursor.execute(sql,[int(0), int(0)])
 
         news = []
