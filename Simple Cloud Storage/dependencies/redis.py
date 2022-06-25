@@ -38,7 +38,7 @@ class SessionWrapper:
 
         return user_data
 
-    def delete_session(self, sessionId):
+    def logout(self, sessionId):
         self.redis.delete(sessionId)
         return 1
 
