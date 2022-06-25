@@ -88,12 +88,12 @@ class DepartmentNewsBoardGatewayService:
                 "status": "success",
                 "message": "Log out success! "
             }
-            response.delete_cookie('SESSID')
+            
             response = Response(
                 json.dumps(status),
                 mimetype='application/json'
             )
-
+            response.delete_cookie('SESSID')
             return response
 
         else:
