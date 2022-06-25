@@ -141,10 +141,8 @@ class DepartmentNewsBoardGatewayService:
                 data.save(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
                 
                 fileList.append(fileName)
-                
-            dataR = request.get_data(as_text=True)
-            dataR = json.loads(dataR)
-            status = self.department_news_board_news_rpc.addNews(fileList, dataR['desc'])
+
+            status = self.department_news_board_news_rpc.addNews(fileList, request.form['text'])
 
             response = Response(
                 json.dumps(status),
