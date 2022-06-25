@@ -21,8 +21,8 @@ EXTENSION_HEADER = {
 app = Flask(__name__)
 app.config['UPLOAD_FOLDER'] = PATH
 
-if not os.path.exists('data'):
-    os.mkdir('data')
+if not os.path.exists('data/file'):
+    os.mkdir('data/file')
 if not os.path.exists(PATH):
     os.mkdir(PATH)
 
