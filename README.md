@@ -1,2 +1,2 @@
 # SOA-Self-Project
-Service Oriented Architecture Project using Nameko and Flask REST
+Service Oriented Architecture Project using Nameko REST, Flask REST and Celery
