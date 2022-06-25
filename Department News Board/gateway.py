@@ -202,7 +202,7 @@ class DepartmentNewsBoardGatewayService:
             response = Response('Anda belum login')
             return response
 
-    @http('GET', 'news/file/<int:idFile>')
+    @http('GET', '/news/file/<int:idFile>')
     def downloadFileById(self, request, idFile):
         download = self.department_news_board_news_rpc.downloadFileById(idFile)
 
