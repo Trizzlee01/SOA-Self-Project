@@ -163,7 +163,7 @@ class DatabaseWrapper:
     def editNews(self, idNews, desc):
         cursor = self.connection.cursor(dictionary=True)
         sql = 'UPDATE news SET descc = %s WHERE id = %s'
-        cursor.execute(sql,[desc, idNews])
+        cursor.execute(sql,[desc['desc'], idNews])
 
         self.connection.commit()
         cursor.close()
