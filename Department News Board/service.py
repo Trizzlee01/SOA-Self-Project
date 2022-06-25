@@ -38,7 +38,7 @@ class DepartmentNewsBoardNewsService:
 
     @rpc
     def editNews(self, idNews, desc):
-        status = self.database.editDesc(idNews, desc)
+        status = self.database.editNews(idNews, desc)
         return status
 
     @rpc
