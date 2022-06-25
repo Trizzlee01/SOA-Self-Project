@@ -22,8 +22,8 @@ class SimpleCloudStorageDataService:
     database = db.DatabaseProvider()
 
     @rpc
-    def uploadFile(self, name):
-        return self.database.uploadFile(name)
+    def uploadFile(self, fileList):
+        return self.database.uploadFile(fileList)
     
     @rpc
     def downloadFile(self, idFile):

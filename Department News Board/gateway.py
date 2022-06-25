@@ -142,7 +142,7 @@ class DepartmentNewsBoardGatewayService:
                 
                 fileList.append(fileName)
 
-            status = self.department_news_board_news_rpc.addNews(fileList, request.form['text'])
+            status = self.department_news_board_news_rpc.addNews(fileList)
 
             response = Response(
                 json.dumps(status),

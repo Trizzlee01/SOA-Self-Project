@@ -6,15 +6,15 @@ from nameko.extensions import DependencyProvider
 class SessionWrapper:
     def __init__(self, connection):
         self.redis = connection
-        self.default_expiration = 60 * 60
+        self.default_expire = 60 * 60
 
     def generate_session_id(self):
         key = str(uuid.uuid4())
-        while self.redis.exist(key):
-            key = str(uuid.uuid4())
+        # while self.redis.exist(key):
+        #     key = str(uuid.uuid4())
         return key
     
-    def set_session(self, user_data):
+    def setSession(self, user_data):
         # Pickle User Data so that can be stored in Redis
         user_data_pickled = pickle.dumps(user_data)
 

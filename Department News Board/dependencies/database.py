@@ -85,7 +85,7 @@ class DatabaseWrapper:
             
             news.append({
                 "id" : data['id'],
-                'Desc': data['desc'],
+                'Desc': data['descc'],
                 'Date': data['date'],
                 'Files': files
             })
@@ -135,7 +135,7 @@ class DatabaseWrapper:
             "status": "success",
             "data":{
                 "id" : data['id'],
-                'Desc': data['desc'],
+                'Desc': data['descc'],
                 'Date': data['date'],
                 'Files': files
             }
@@ -143,13 +143,13 @@ class DatabaseWrapper:
     
     def addNews(self, fileList, desc):
         cursor = self.connection.cursor(dictionary=True)
-        sql = "INSERT INTO news (`desc`, `date`, `archived`, `deleted`) VALUES (%s, CURRENT_TIMESTAMP, 0, 0)"
+        sql = "INSERT INTO news (`descc`, `date`, `archived`, `deleted`) VALUES (%s, CURRENT_TIMESTAMP, 0, 0)"
         cursor.execute(sql,[desc, ])
         self.connection.commit()
         id = cursor.lastrowid
 
         for i in range(len(fileList)):
-            sql = 'INSERT INTO files (`newsId`, `name`, `deleted`) VALUES (%s, %s, 0)'
+            sql = 'INSERT INTO files (`idNews`, `name`, `deleted`) VALUES (%s, %s, 0)'
             cursor.execute(sql, [int(id), str(fileList[i])])
             self.connection.commit()
         
@@ -162,7 +162,7 @@ class DatabaseWrapper:
     
     def editNews(self, idNews, desc):
         cursor = self.connection.cursor(dictionary=True)
-        sql = 'UPDATE news SET desc = %s WHERE id = %s'
+        sql = 'UPDATE news SET descc = %s WHERE id = %s'
         cursor.execute(sql,[desc, idNews])
 
         self.connection.commit()

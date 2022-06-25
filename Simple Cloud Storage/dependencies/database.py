@@ -60,11 +60,12 @@ class DatabaseWrapper:
                 "message": "Your credentials do not match our records! "
             }
 
-    def uploadFile(self, name):
+    def uploadFile(self, fileList):
         cursor = self.connection.cursor(dictionary=True)
-        sql = 'INSERT INTO storage (`name`) VALUES (%s,)'
-        cursor.execute(sql,[name,])
-        self.connection.commit()
+        for i in range(len(fileList)):
+            sql = 'INSERT INTO storage (`name`) VALUES (%s)'
+            cursor.execute(sql, [str(fileList[i]),])
+            self.connection.commit()
         
         cursor.close()
 

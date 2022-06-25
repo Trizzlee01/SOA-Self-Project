@@ -102,9 +102,42 @@ class SimpleCloudStorageGatewayService:
     
     @http('POST', '/storage')
     def uploadFile(self, request):
-        pass
+        files = request.files.getlist('file')
+        fileList = []
+        for data in files:
+
+            fileName = secure_filename(data.filename)
+            data.save(os.path.join(app.config['UPLOAD_FOLDER'], fileName))
+            
+            fileList.append(fileName)
+
+        status = self.department_news_board_news_rpc.addNews(fileList, request.form['text'])
+
+        response = Response(
+            json.dumps(status),
+            mimetype='application/json'
+        )
+
+        return response
+
         
-    @http('GET', '/storage')
-    def downloadFile(self, request):
-        pass
+    @http('GET', '/storage/<int:idFile>')
+    def downloadFile(self, request, idFile):
+        download = self.simple_cloud_storage_data_rpc.downloadFile(idFile)
+
+        if download['status']=="success":
+            name = download['data']['name']
+            response = Response(open(PATH + '/' + name, 'rb').read())
+            fileType = name.split('.')[-1]
+            
+            response.headers['Content-Type'] = EXTENSION_HEADER[fileType]
+            response.headers['Content-Disposition'] = 'attachment; filename={}'.format(name)
+        else:
+            result = download
+            response = Response(
+                json.dumps(result),
+                mimetype='application/json'
+            )
+
+        return response
 
