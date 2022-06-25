@@ -111,7 +111,7 @@ class SimpleCloudStorageGatewayService:
             
             fileList.append(fileName)
 
-        status = self.simple_cloud_storage_data_rpc.addNews(fileList, request.form['text'])
+        status = self.simple_cloud_storage_data_rpc.uploadFile(fileList, request.form['text'])
 
         response = Response(
             json.dumps(status),
